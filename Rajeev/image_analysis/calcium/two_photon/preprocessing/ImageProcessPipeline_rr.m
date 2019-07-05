@@ -68,17 +68,20 @@ Displayrois()
 % oridirtuning()
 
 %% extract speed from quad data
-% file in Github\Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\running
+% file in Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\running
 % file can be run directly
 quad_split3 % for 3 z-slices only
 
 %% check for responsive cells
-
+% file in Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\response
 % file to be run section by section, some inputs needed
 responsive_cells 
 
 
-%% end
+%% collate and compare responsive cells across sessions
+% file in Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\multi_session
+% file to be run section by section, some inputs needed 
+cell_mult_sess_coll
 
 %% Align your image stack using scanbox routines 
 % 
