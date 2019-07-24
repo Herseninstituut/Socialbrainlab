@@ -64,8 +64,7 @@ for i=1:Tr % for each ROI
         if (StimOn(j)-Tf_pre)>=1
             stat_arr(j,1,i)=mean(SPSIG_file.sig((StimOn(j)-Tf_pre):(StimOn(j)-1),i));
         end
-            stat_arr(j,2,i)=mean(SPSIG_file.sig(StimOn(j)+2:(StimOn(j)+Tf_st),i));
-            % +2 for ~ half a second shift into the stim
+            stat_arr(j,2,i)=mean(SPSIG_file.sig(StimOn(j):(StimOn(j)+Tf_st),i));  
     end
 end
 
