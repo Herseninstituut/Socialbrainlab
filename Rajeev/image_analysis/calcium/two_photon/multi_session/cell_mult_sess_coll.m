@@ -111,6 +111,11 @@ for i=1:size(sig_rois_ind,1)
     end
 end
 
+%% save values
+
+save('comm_rois','sig_rois','sig_rois_ind','sig_rois_ind_ori','sess_rois','sess_rois_num')
+clear
+clc
 
 
 
