@@ -65,6 +65,8 @@ for i=1:size(sess_rois_num,1) % no. of responsive rois
         end
     end
 end
+
+% replace zeros (not actual measurements) with nans
 st_pre_nan=nan(size(st_pre,1),size(st_pre,2),size(st_pre,3));
 for i=1:size(st_pre,3) % no. of responsive rois
     for j=1:size(st_pre,2) % index of sessions
@@ -94,6 +96,9 @@ for i=1:size(st_pre_nan,3) % for each ROI
         sr.val.stat(i)=stats;
 %     end
 end
+
+% check whether the shock observation > shock control rois are also 
+% responsive for laser or squeak
 
 sig_rois_ind_ori=[];
 for i=1:size(sig_rois_ind,1)
