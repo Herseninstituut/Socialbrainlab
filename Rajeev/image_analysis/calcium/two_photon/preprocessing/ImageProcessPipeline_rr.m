@@ -83,6 +83,13 @@ responsive_cells
 % file to be run section by section, some inputs needed 
 cell_mult_sess_coll
 
+%% for regression of run speed related activity
+RunGLMFitCaResFullNeg
+responsive_cells_glm
+cell_mult_sess_coll_glm
+
+
+
 %% Align your image stack using scanbox routines 
 % 
 %  %scanbox version of aligning
