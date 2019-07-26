@@ -52,28 +52,6 @@ for rpt=1:1000
         StimOff(i,1)=StimOn(i,1)-10;
     end
     
-    % label frames when stim is on
-    % m=1;
-    % for i=1:n
-    %     if i >= StimOn(m,1) && i < StimOff(m,1)
-    %         st_fr(i,1)=1;
-    %     elseif i == StimOff(m,1)
-    %         st_fr(i,1)=1;
-    %         if m < Ts
-    %             m=m+1;
-    %         end
-    %     else
-    %         st_fr(i,1)=0;
-    %     end
-    % end
-    %% Extract stim frames
-    % Prestim = 4s, stim 2s frames, post stim 8s
-    % prompt='how many seconds before stim onset?';
-    % pre_stim_dur=input(prompt); % in seconds
-    % prompt='how many seconds of stim?';
-    % stim_dur=input(prompt); % in seconds
-    % prompt='how many seconds after stim offset?';
-    % post_stim_dur=input(prompt); % in seconds
     pre_stim_dur=4;
     stim_dur=2;
     post_stim_dur=4;
@@ -89,38 +67,6 @@ for rpt=1:1000
             stat_arr(j,2,i)=mean(SPSIG_file.sig(StimOn(j):(StimOn(j)+Tf_st),i));
         end
     end
-    
-    %% shapiro wilk
-    % sw.stat={};
-    % for i=1:Tr % for each ROI
-    %     [H, pValue, SWstatistic]=swtest(stat_arr(:,1,i),0.05);
-    %     sw.stat.H(i,1)=H;
-    %     sw.stat.p(i,1)=pValue;
-    %     sw.stat.SW(i,1)=SWstatistic;
-    %     [H, pValue, SWstatistic]=swtest(stat_arr(:,2,i),0.05);
-    %     sw.stat.H(i,2)=H;
-    %     sw.stat.p(i,2)=pValue;
-    %     sw.stat.SW(i,2)=SWstatistic;
-    % end
-    %% Wilcoxon rank sum test (for non-paired non uniform samples)
-    % % equivalent to the Mann-Whitney U test
-    %
-    % rs.val={};
-    % resp=zeros(1,Tr);
-    % resp_rois=[];
-    % c=1;%count
-    % for i=1:Tr % for each ROI
-    %     [p,h,stats]=ranksum(stat_arr(:,1,i),stat_arr(:,2,i),'alpha',0.05,'tail','left');
-    %     rs.val.p(i)=p;
-    %     if rs.val.p(i)<0.05
-    %         resp(1,i)=1;
-    %         resp_rois(c)=i;
-    %         c=c+1;
-    %     end
-    %     rs.val.h(i)=h;
-    %     rs.val.stat(i)=stats;
-    % end
-    % tot_roi=sum(rs.val.h);
     
     % Wilcoxon sign rank test (for paired non uniform samples)
     sr.val={};
@@ -141,6 +87,7 @@ for rpt=1:1000
     %     random_roi.resp.rpt=resp_rois;
     random_roi.n(rpt)=size(resp_rois,2);
 end
+%
 prompt='how many rois are responsive to actual stim?';
 true_resp=input(prompt);
 c=0;
@@ -155,5 +102,5 @@ random_roi.std=std(random_roi.n(1,:));
 random_roi.med=median(random_roi.n(1,:));
 histogram(random_roi.n(1,:))
 toc
-save('rand_test','random_roi','speed','run','stim','info')
+save('rand_test','random_roi','speed','run','stim')
 
