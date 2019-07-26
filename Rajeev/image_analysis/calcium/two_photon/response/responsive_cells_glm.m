@@ -49,38 +49,6 @@ for i=1:Tr % for each ROI
     end
 end
 
-% shapiro wilk
-% sw.stat={};
-% for i=1:Tr % for each ROI
-%     [H, pValue, SWstatistic]=swtest(stat_arr(:,1,i),0.05);
-%     sw.stat.H(i,1)=H;
-%     sw.stat.p(i,1)=pValue;
-%     sw.stat.SW(i,1)=SWstatistic;
-%     [H, pValue, SWstatistic]=swtest(stat_arr(:,2,i),0.05);
-%     sw.stat.H(i,2)=H;
-%     sw.stat.p(i,2)=pValue;
-%     sw.stat.SW(i,2)=SWstatistic;
-% end
-% Wilcoxon rank sum test (for non-paired non uniform samples) 
-% % equivalent to the Mann-Whitney U test
-% 
-% rs.val={};
-% resp=zeros(1,Tr);
-% resp_rois=[];
-% c=1;%count
-% for i=1:Tr % for each ROI
-%     [p,h,stats]=ranksum(stat_arr(:,1,i),stat_arr(:,2,i),'alpha',0.05,'tail','left');
-%     rs.val.p(i)=p;
-%     if rs.val.p(i)<0.05
-%         resp(1,i)=1;
-%         resp_rois(c)=i;
-%         c=c+1;
-%     end
-%     rs.val.h(i)=h;
-%     rs.val.stat(i)=stats;
-% end
-% tot_roi=sum(rs.val.h);
-
 % Wilcoxon sign rank test (for paired non uniform samples) 
 sr.val={};
 resp=zeros(1,Tr);

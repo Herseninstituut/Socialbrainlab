@@ -42,6 +42,9 @@ for rpt=1:1000
     Tr=size(SPSIG_file.sig,2);
     % randomize stims
     a=(floor(stim(stim1,1)/100))*100;
+    if a < 1
+       a=1; 
+    end
     b=size(speed,2)-(1+Tf_st);
     r = sort(round(a + (b-a).*rand(size((stim1:2:stim2),2),1)));
     
@@ -87,6 +90,7 @@ for rpt=1:1000
     %     random_roi.resp.rpt=resp_rois;
     random_roi.n(rpt)=size(resp_rois,2);
 end
+
 %
 prompt='how many rois are responsive to actual stim?';
 true_resp=input(prompt);
