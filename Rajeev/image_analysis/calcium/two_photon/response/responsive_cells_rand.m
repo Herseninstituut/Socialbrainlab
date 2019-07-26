@@ -155,5 +155,5 @@ random_roi.std=std(random_roi.n(1,:));
 random_roi.med=median(random_roi.n(1,:));
 histogram(random_roi.n(1,:))
 toc
-save('rand_test','random_roi', '-append')
+save('rand_test','random_roi','speed','run','stim','info')
 
