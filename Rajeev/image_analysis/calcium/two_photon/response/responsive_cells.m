@@ -2,6 +2,8 @@
 % 2019_06_27 
 % Open directory
 % split folders
+function responsive_cells(stim_first,stim_last,pre_stim_dur,stim_dur,post_stim_dur) % 
+
 [fn , pn] = uigetfile('*_SPSIG.mat');
 cd(pn)
 
@@ -19,17 +21,17 @@ dist = (2*pi*ra)*run/1000; %in cms
 speed = (dist)*SPSIG_file.freq; % in cms/s
 
 %% manually check by opening stim
-prompt='Which is the first stim onset index?';
-stim1=input(prompt); % first stim onset
-prompt='Which is the last stim onset index?';
-stim2=input(prompt); % last stim onset
+% prompt='Which is the first stim onset index?';
+% stim_first=input(prompt); % first stim onset
+% prompt='Which is the last stim onset index?';
+% stim_last=input(prompt); % last stim onset
 n=size(SPSIG_file.sig,1); % total frames available
 
 % Selecting the stim on and off frames
-Ts=size((stim1:2:stim2),2);
+Ts=size((stim_first:2:stim_last),2);
 for i=1:Ts
-    StimOn(i,1)=stim((stim1+(2*i-2)),1);
-    StimOff(i,1)=stim((stim1+(2*i-2))+1,1);
+    StimOn(i,1)=stim((stim_first+(2*i-2)),1);
+    StimOff(i,1)=stim((stim_first+(2*i-2))+1,1);
 end
 
 % label frames when stim is on
@@ -48,12 +50,12 @@ for i=1:n
 end
 %% Extract stim frames
 % Prestim = 4s, stim 2s frames, post stim 4s
-prompt='how many seconds before stim onset?';
-pre_stim_dur=input(prompt); % in seconds
-prompt='how many seconds of stim?';
-stim_dur=input(prompt); % in seconds
-prompt='how many seconds after stim offset?';
-post_stim_dur=input(prompt); % in seconds
+% prompt='how many seconds before stim onset?';
+% pre_stim_dur=input(prompt); % in seconds
+% prompt='how many seconds of stim?';
+% stim_dur=input(prompt); % in seconds
+% prompt='how many seconds after stim offset?';
+% post_stim_dur=input(prompt); % in seconds
 %% distribute the signals into pre and stim groups for all stims
 Tf_pre=ceil((pre_stim_dur)*SPSIG_file.freq); % no. of frames before stim onset
 Tf_st=ceil((stim_dur+post_stim_dur)*SPSIG_file.freq); % no. of frames from stim onset

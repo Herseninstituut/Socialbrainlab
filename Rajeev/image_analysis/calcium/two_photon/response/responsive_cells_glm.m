@@ -2,17 +2,18 @@
 % 2019_06_27 
 % Open directory
 % split folders
+function responsive_cells_glm(pre_stim_dur,stim_dur,post_stim_dur) %
 pn = uigetdir();
 cd(pn)
 
 %% Extract stim frames
 % Prestim = 4s, stim 2s frames, post stim 4s
-prompt='how many seconds before stim onset?';
-pre_stim_dur=input(prompt); % in seconds
-prompt='how many seconds of stim?';
-stim_dur=input(prompt); % in seconds
-prompt='how many seconds after stim offset?';
-post_stim_dur=input(prompt); % in seconds
+% prompt='how many seconds before stim onset?';
+% pre_stim_dur=input(prompt); % in seconds
+% prompt='how many seconds of stim?';
+% stim_dur=input(prompt); % in seconds
+% prompt='how many seconds after stim offset?';
+% post_stim_dur=input(prompt); % in seconds
 
 %% Load data files
 

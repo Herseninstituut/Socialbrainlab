@@ -3,18 +3,20 @@
 % Open directory
 pn = uigetdir();
 cd(pn)
-if exist([pn '\split1\'])  
+if exist([pn '\mult_sessions\split1\'])  
 else
-    mkdir([pn '\split1\'])
+    mkdir([pn '\mult_sessions\split1\'])
 end
-if exist([pn '\split2\'])  
+if exist([pn '\mult_sessions\split2\'])  
 else
-    mkdir([pn '\split2\'])
+    mkdir([pn '\mult_sessions\split2\'])
 end
-if exist([pn '\split3\'])  
+if exist([pn '\mult_sessions\split3\'])  
 else
-    mkdir([pn '\split3\'])
+    mkdir([pn '\mult_sessions\split3\'])
 end
+pn = uigetdir();
+cd(pn)
 
 %%
 cd ([pn '\mult_sessions\'])
@@ -125,7 +127,7 @@ end
 
 %% save values
 
-save('comm_rois','sig_rois','sig_rois_ind','sig_rois_ind_ori','sess_rois','sess_rois_num','-append')
+save('glm_speed_regr','sig_rois','sig_rois_ind','sig_rois_ind_ori','sess_rois','sess_rois_num',-append)
 clear
 clc
 

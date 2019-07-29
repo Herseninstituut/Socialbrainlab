@@ -71,7 +71,7 @@ st_pre_nan=nan(size(st_pre,1),size(st_pre,2),size(st_pre,3));
 for i=1:size(st_pre,3) % no. of responsive rois
     for j=1:size(st_pre,2) % index of sessions
         for k=1:size(st_pre,1) % number of trials
-            if st_pre(k,j,i)~=0 || isnan(st_pre(k,j,i))
+            if st_pre(k,j,i)~=0 | isnan(st_pre(k,j,i))
                 st_pre_nan(k,j,i)=st_pre(k,j,i);
             end
         end
@@ -116,6 +116,5 @@ end
 save('comm_rois','sig_rois','sig_rois_ind','sig_rois_ind_ori','sess_rois','sess_rois_num')
 clear
 clc
-
 
 

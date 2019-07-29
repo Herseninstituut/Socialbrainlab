@@ -67,7 +67,11 @@ for rpt=1:1000
             if (StimOn(j)-Tf_pre)>=1
                 stat_arr(j,1,i)=mean(SPSIG_file.sig((StimOn(j)-Tf_pre):(StimOn(j)-1),i));
             end
-            stat_arr(j,2,i)=mean(SPSIG_file.sig(StimOn(j):(StimOn(j)+Tf_st),i));
+            if StimOn(j)+Tf_st > size(SPSIG_file.sig,1)
+                stat_arr(j,2,i)=mean(SPSIG_file.sig(StimOn(j):end,i));
+            else
+                stat_arr(j,2,i)=mean(SPSIG_file.sig(StimOn(j):(StimOn(j)+Tf_st),i));
+            end
         end
     end
     
