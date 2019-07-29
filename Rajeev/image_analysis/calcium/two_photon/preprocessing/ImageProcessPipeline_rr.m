@@ -74,13 +74,29 @@ quad_split3 % for 3 z-slices only
 
 %% check for responsive cells
 % file in Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\response
-% file to be run section by section, some inputs needed
+% just run the file 
+% inputs needed are 
+% 1. stim_first = index of first stim
+% 2. stim_last = index of last stim
+% 3. pre_stim_dur = duration of pre_stim for F calculation, in seconds
+% 4. stim_dur = duration of stim, in seconds
+% 5. post_stim_dur = duration of post_stim for dF calculation, in seconds
+
 responsive_cells 
 
 
 %% collate and compare responsive cells across sessions
-% file in Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\multi_session
-% file to be run section by section, some inputs needed 
+% file in Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\multi_session 
+% just run the file 
+% inputs needed are 
+% 1. parent folder of all the sessions 
+% 2. specific split subfolder in mult_sessions folder
+% 3. load SPSIG file from the following sessions in order
+%       shock_observation
+%       shock_control
+%       laser_self or laser_self_select
+%       squeak_playback
+
 cell_mult_sess_coll
 
 %% for regression of run speed related activity
