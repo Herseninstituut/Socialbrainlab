@@ -1,46 +1,20 @@
 %% created by Rajeev Rajendran
 % 2019_07_02 
 % Open directory
-function cell_mult_sess_coll()
 pn = uigetdir();
-cd(pn);
-if exist([pn '\mult_sessions\split1\'])  
-else
-    mkdir([pn '\mult_sessions\split1\'])
-end
-if exist([pn '\mult_sessions\split2\'])  
-else
-    mkdir([pn '\mult_sessions\split2\'])
-end
-if exist([pn '\mult_sessions\split3\'])  
-else
-    mkdir([pn '\mult_sessions\split3\'])
-end
- % go to correct split folder in mult_sessions
+cd(pn)
 
 %%
-pn1 = uigetdir();
-cd(pn1);
-% run=['quad.quad_',pn(end-6:end-1)];
-fn1=(['chr_matched_rois_split',pn(end)]);
-load(fn1,'linkMat2');
-% shock observation folder and file
-pn_obs=([pn,'\shock_observation\analysis\split',pn1(end)]);
-cd (pn_obs);
-sig{1}=load(uigetfile('*_SPSIG.mat')); 
-% shock control folder and file
-pn_con=([pn,'\shock_control\analysis\split',pn1(end)]);
-cd (pn_con);
-sig{2}=load(uigetfile('*_SPSIG.mat'));
-% laser folder and file
-pn_las=([pn,'\laser_self_select\analysis\split',pn1(end)]);
-cd (pn_las);
-sig{3}=load(uigetfile('*_SPSIG.mat'));
-% laser folder and file
-pn_sq=([pn,'\squeak_playback\analysis\split',pn1(end)]);
-cd (pn_sq);
-sig{4}=load(uigetfile('*_SPSIG.mat'));
-
+cd ([pn '\mult_sessions\'])
+load('chr_matched_rois_split1','linkMat2');
+cd ([pn '\shock_observation\analysis\split1'])
+sig{1}=load('glm_speed_regr');
+cd ([pn '\shock_control\analysis\split1'])
+sig{2}=load('glm_speed_regr');
+cd ([pn '\laser_self_select\analysis\split1'])
+sig{3}=load('glm_speed_regr');
+cd ([pn '\squeak_playback\analysis\split1'])
+sig{4}=load('glm_speed_regr');
 % decon{1}=decon1;
 % decon{2}=decon2;
 % decon{3}=decon3;
@@ -138,10 +112,9 @@ for i=1:size(sig_rois_ind,1)
 end
 
 %% save values
-cd(pn1)
+
 save('comm_rois','sig_rois','sig_rois_ind','sig_rois_ind_ori','sess_rois','sess_rois_num')
 clear
 clc
-
 
 
