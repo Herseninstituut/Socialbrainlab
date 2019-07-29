@@ -103,8 +103,11 @@ responsive_cells_rand
 cell_mult_sess_coll
 
 %% for regression of run speed related activity
+% glm fit
 RunGLMFitCaResFullNeg
+% use residuals for checking responsive cells
 responsive_cells_glm
+% compare across different sessions
 cell_mult_sess_coll_glm
 
 

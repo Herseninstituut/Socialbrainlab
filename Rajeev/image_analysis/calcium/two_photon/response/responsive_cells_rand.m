@@ -3,6 +3,7 @@
 % Open directory
 % split folders
 function responsive_cells_rand(stim_first,stim_last,pre_stim_dur,stim_dur,post_stim_dur) % 
+format compact
 [~ , pn] = uigetfile('*_SPSIG.mat');
 cd(pn)
 
@@ -104,10 +105,27 @@ for i=1:1000
         c=c+1;
     end
 end
+%
 random_roi.percentile=c/10;
 random_roi.mean=mean(random_roi.n(1,:));
 random_roi.std=std(random_roi.n(1,:));
 random_roi.med=median(random_roi.n(1,:));
-histogram(random_roi.n(1,:))
 save('rand_test','random_roi','speed','run','stim')
+figure;
+histogram(random_roi.n(1,:))
+hold on
+y=ylim;
+y=(1:y(2)/10:y(2));
+x=ones(1,size(y,2));
+x=x + true_resp;
+plot(x,y,'color','r')
+hold on
+title('Randomized shuffle of stim onset to check chance of random responsive cell')
+xlabel('number of responsive cells, red line = true responsive cell')
+ylabel('number of shuffles')
+saveas(gcf,'Random responsive cells.png')
+% imwrite(A,'newImage.jpg','jpg','Comment','My JPEG file')
+disp(['Random probability of number of responsive cells are ',num2str(random_roi.mean),' +/- ',num2str(random_roi.std)]);
 disp(['Percentile of actual response is  ',num2str(random_roi.percentile)]);
+
+

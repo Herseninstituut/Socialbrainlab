@@ -1,22 +1,22 @@
 %% created by Rajeev Rajendran
-% 2019_07_02 
+% 2019_07_02
 % Open directory
 function cell_mult_sess_coll()
 pn = uigetdir();
 cd(pn);
-if exist([pn '\mult_sessions\split1\'])  
+if exist([pn '\mult_sessions\split1\'])
 else
     mkdir([pn '\mult_sessions\split1\'])
 end
-if exist([pn '\mult_sessions\split2\'])  
+if exist([pn '\mult_sessions\split2\'])
 else
     mkdir([pn '\mult_sessions\split2\'])
 end
-if exist([pn '\mult_sessions\split3\'])  
+if exist([pn '\mult_sessions\split3\'])
 else
     mkdir([pn '\mult_sessions\split3\'])
 end
- % go to correct split folder in mult_sessions
+% go to correct split folder in mult_sessions
 
 %%
 pn1 = uigetdir();
@@ -27,13 +27,17 @@ load(fn1,'linkMat2');
 % shock observation folder and file
 pn_obs=([pn,'\shock_observation\analysis\split',pn1(end)]);
 cd (pn_obs);
-sig{1}=load(uigetfile('*_SPSIG.mat')); 
+sig{1}=load(uigetfile('*_SPSIG.mat'));
 % shock control folder and file
 pn_con=([pn,'\shock_control\analysis\split',pn1(end)]);
 cd (pn_con);
 sig{2}=load(uigetfile('*_SPSIG.mat'));
 % laser folder and file
-pn_las=([pn,'\laser_self_select\analysis\split',pn1(end)]);
+if exist([pn,'\laser_self_select\analysis\split',pn1(end)])
+    pn_las=([pn,'\laser_self_select\analysis\split',pn1(end)]);
+else
+    pn_las=([pn,'\laser_self\analysis\split',pn1(end)]);
+end
 cd (pn_las);
 sig{3}=load(uigetfile('*_SPSIG.mat'));
 % laser folder and file
@@ -110,20 +114,20 @@ sig_rois=zeros(1,size(st_pre_nan,3));
 sig_rois_ind=[];
 c=1;
 for i=1:size(st_pre_nan,3) % for each ROI
-%     if isfinite(st_pre_nan(:,2,i)) && isfinite(st_pre_nan(:,1,i))
-        [p,h,stats] = signrank(st_pre_nan(:,2,i),st_pre_nan(:,1,i),'alpha',0.05,'tail','left');
-        sr.val.p(i)=p;
-        if sr.val.p(i)<0.05
-            sig_rois(1,i)=1;
-            sig_rois_ind(c,1)=i;
-            c=c+1;
-        end
-        sr.val.h(i)=h;
-        sr.val.stat(i)=stats;
-%     end
+    %     if isfinite(st_pre_nan(:,2,i)) && isfinite(st_pre_nan(:,1,i))
+    [p,h,stats] = signrank(st_pre_nan(:,2,i),st_pre_nan(:,1,i),'alpha',0.05,'tail','left');
+    sr.val.p(i)=p;
+    if sr.val.p(i)<0.05
+        sig_rois(1,i)=1;
+        sig_rois_ind(c,1)=i;
+        c=c+1;
+    end
+    sr.val.h(i)=h;
+    sr.val.stat(i)=stats;
+    %     end
 end
 
-% check whether the shock observation > shock control rois are also 
+% check whether the shock observation > shock control rois are also
 % responsive for laser or squeak
 
 sig_rois_ind_ori=[];
