@@ -82,8 +82,11 @@ quad_split3 % for 3 z-slices only
 % 4. stim_dur = duration of stim, in seconds
 % 5. post_stim_dur = duration of post_stim for dF calculation, in seconds
 
-responsive_cells 
+responsive_cells
 
+% also same inputs are needed for randomly active cells
+
+responsive_cells_rand
 
 %% collate and compare responsive cells across sessions
 % file in Socialbrainlab\Rajeev\image_analysis\calcium\two_photon\multi_session 
