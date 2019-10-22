@@ -22,7 +22,7 @@ end
 pn1 = uigetdir();
 cd(pn1);
 % run=['quad.quad_',pn(end-6:end-1)];
-fn1=(['chr_matched_rois_split',pn(end)]);
+fn1=(['chr_matched_rois_split',pn1(end)]);
 load(fn1,'linkMat2');
 % shock observation folder and file
 pn_obs=([pn,'\shock_observation\analysis\split',pn1(end)]);
